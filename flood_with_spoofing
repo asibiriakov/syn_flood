@@ -1,0 +1,6 @@
+from scapy.all import *
+with open('clients_to_vip.txt', 'r') as f:
+ips = [line for line in f.readlines()]
+for addr in ips:
+  packet = IP(dst="10.10.10.20",src=addr)/TCP(dport=80, flags="S")
+  send(packet)
